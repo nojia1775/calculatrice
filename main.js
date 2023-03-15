@@ -8,20 +8,23 @@ const touches = ["(", ")", "+", "7", "8", "9", "-", "4", "5", "6", "*", "1", "2"
 document.addEventListener('click', (e) => {
     const value = e.target.getAttribute("aria-valuenow");
     
-    //les nombres qu'on écrit s'écrivent sur l'écran
     if(touches.includes(value)) {
         ecran.textContent += value;
     }
 
     switch (value) {
-        case value == "clear":
+        case "clear":
             ecran.textContent = "";
             break;
 
-        case value == "egal":
-            const resultat = eval(ecran.textContent);
+        case "egal":
+            const resultat = Math.floor(eval(ecran.textContent) * 10000) / 10000;
             ecran.textContent = resultat;
             break;
+
+        case "signe":
+            const signe = ecran.textContent * -1;
+            ecran.textContent = signe;
 
         default:
             break;
